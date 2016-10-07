@@ -60,6 +60,12 @@ def normalise_input(user_input):
 
     
 def display_room(room):
+    print( "" )
+    print( rooms ["name"]).upper()
+    print( "" )
+    print( rooms ["description"])
+    print( "" )
+
     """This function takes a room as an input and nicely displays its name
     and description. The room argument is a dictionary with entries "name",
     "description" etc. (see map.py for the definition). The name of the room
@@ -82,6 +88,8 @@ def display_room(room):
 
     
 def exit_leads_to(exits, direction):
+
+
     """This function takes a dictionary of exits and a direction (a particular
     exit taken from this dictionary). It returns the name of the room into which
     this exit leads. For example:
@@ -93,10 +101,12 @@ def exit_leads_to(exits, direction):
     >>> exit_leads_to(rooms["Tutor"]["exits"], "west")
     'Reception'
     """
-    pass
+    return rooms[exits[direction]]['name']
     
 
-def print_menu_line(direction, leads_to):
+def print_menu_line(direction, exit_leads_to):
+
+    print( "Go " + direction.upper() + " to " + leads_to)
     """This function prints a line of a menu of exits. It takes a direction (the
     name of an exit) and the name of the room into which it leads (leads_to),
     and should print a menu line in the following format:
@@ -109,7 +119,7 @@ def print_menu_line(direction, leads_to):
     >>> print_menu_line("south", "Robs' room")
     Go SOUTH to Robs' room.
     """
-    pass
+    # pass
 
 
 def print_menu(exits):
@@ -120,7 +130,7 @@ def print_menu(exits):
     which an exit leads is obtained using the function exit_leads_to().
 
     For example, the menu of exits from Reception may look like this:
-
+    >>> print_menu(rooms['exits'])
     You can:
     Go EAST to your personal tutor's office.
     Go WEST to the parking lot.
@@ -128,6 +138,9 @@ def print_menu(exits):
     Where do you want to go?
     """
     print("You can:")
+
+    for exits in rooms:
+        print_menu_line(direction, exit_leads_to(exits, direction))    
     
     # COMPLETE THIS PART:
     # Iterate over available exits:
@@ -152,7 +165,7 @@ def is_valid_exit(exits, user_input):
     >>> is_valid_exit(rooms["Parking"]["exits"], "east")
     True
     """
-    pass
+    return rooms[exits[user_input]]
 
 
 def menu(exits):
