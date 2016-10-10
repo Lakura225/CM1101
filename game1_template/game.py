@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 from map import rooms
 import string
@@ -18,7 +18,7 @@ def remove_punct(text):
     >>> remove_punct(",go!So.?uTh")
     'goSouTh'
     """
-    # pass # The pass statement does nothing. Replace it with the body of your function.
+    # The pass statement does nothing. Replace it with the body of your function.
     
     
 def remove_spaces(text):
@@ -38,13 +38,16 @@ def remove_spaces(text):
     >>> remove_spaces("   ")
     ''
     """
-    # pass
-
+    
 
 def normalise_input(user_input):
-    user_input.translate(string.maketrans("",""), string.punctuation)
-    user_input.strip()
-    user_input.lower()
+    remove_punc = user_input.translate(string.maketrans("",""), string.punctuation)
+    remove_spac = remove_punc.strip()
+    final = remove_spac.lower()
+    user_input = final
+    return user_input
+
+
     """This function removes all punctuation, leading and trailing
     spaces from a string, and converts the string to lower case.
     For example:
@@ -56,14 +59,14 @@ def normalise_input(user_input):
     >>> normalise_input("HELP!!!!!!!")
     'help'
     """
-    # pass
+    
 
     
 def display_room(room):
     print( "" )
-    print( rooms ["name"]).upper()
+    print( room["name"].upper())
     print( "" )
-    print( rooms ["description"])
+    print( room["description"])
     print( "" )
 
     """This function takes a room as an input and nicely displays its name
@@ -84,7 +87,7 @@ def display_room(room):
 
     Note: <BLANKLINE> here means that doctest should expect a blank line.
     """
-    # pass # The pass statement does nothing. Replace it with the body of your function.
+     # The pass statement does nothing. Replace it with the body of your function.
 
     
 def exit_leads_to(exits, direction):
@@ -104,9 +107,9 @@ def exit_leads_to(exits, direction):
     return rooms[exits[direction]]['name']
     
 
-def print_menu_line(direction, exit_leads_to):
+def print_menu_line(direction, leads_to):
 
-    print( "Go " + direction.upper() + " to " + leads_to)
+    print( "Go " + direction.upper() + " to " + leads_to + '.')
     """This function prints a line of a menu of exits. It takes a direction (the
     name of an exit) and the name of the room into which it leads (leads_to),
     and should print a menu line in the following format:
@@ -130,7 +133,6 @@ def print_menu(exits):
     which an exit leads is obtained using the function exit_leads_to().
 
     For example, the menu of exits from Reception may look like this:
-    >>> print_menu(rooms['exits'])
     You can:
     Go EAST to your personal tutor's office.
     Go WEST to the parking lot.
@@ -139,8 +141,9 @@ def print_menu(exits):
     """
     print("You can:")
 
-    for exits in rooms:
-        print_menu_line(direction, exit_leads_to(exits, direction))    
+    for direction in exits:
+        leads_to = exit_leads_to(exits, direction)
+        print_menu_line(direction, leads_to)    
     
     # COMPLETE THIS PART:
     # Iterate over available exits:
@@ -165,7 +168,10 @@ def is_valid_exit(exits, user_input):
     >>> is_valid_exit(rooms["Parking"]["exits"], "east")
     True
     """
-    return rooms[exits[user_input]]
+    if user_input in exits:
+        return True
+    else:
+        return False
 
 
 def menu(exits):
@@ -180,7 +186,13 @@ def menu(exits):
 
     # Repeat until the player enter a valid choice
     while True:
-        pass
+        print_menu(exits)
+        user_input = raw_input()
+        choice = normalise_input(user_input)
+        if is_valid_exit(exits, choice) == True:
+            return choice
+            break
+
         # COMPLETE THIS PART:
         
         # Display menu
@@ -207,7 +219,7 @@ def move(exits, direction):
     >>> move(rooms["Reception"]["exits"], "west") == rooms["Office"]
     False
     """
-    pass
+    return rooms[exits[direction]]
 
 
 # This is the entry point of our program
