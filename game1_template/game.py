@@ -5,7 +5,8 @@ import string
 
 
 def remove_punct(text):
-    text.translate(string.maketrans("",""), string.punctuation)
+    remove_punc = text.translate(string.maketrans("",""), string.punctuation)
+    return remove_punc 
     """This function is used to remove all punctuation
     marks from a string. Spaces do not count as punctuation and should
     not be removed. The funcion takes a string and returns a new string
@@ -22,7 +23,8 @@ def remove_punct(text):
     
     
 def remove_spaces(text):
-    text.strip()
+    remove_spac = text.strip()
+    return remove_spac
     """This function is used to remove leading and trailing spaces from a string.
     It takes a string and returns a new string with does not have leading and
     trailing spaces. For example:
@@ -41,8 +43,8 @@ def remove_spaces(text):
     
 
 def normalise_input(user_input):
-    remove_punc = user_input.translate(string.maketrans("",""), string.punctuation)
-    remove_spac = remove_punc.strip()
+    remove_punc = remove_punct(user_input)
+    remove_spac = remove_spaces(remove_punc)
     final = remove_spac.lower()
     user_input = final
     return user_input
@@ -187,7 +189,7 @@ def menu(exits):
     # Repeat until the player enter a valid choice
     while True:
         print_menu(exits)
-        user_input = raw_input()
+        user_input = raw_input("> ")
         choice = normalise_input(user_input)
         if is_valid_exit(exits, choice) == True:
             return choice
