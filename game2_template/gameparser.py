@@ -49,10 +49,7 @@ def remove_punct(text):
     >>> remove_punct(",go!So.?uTh")
     'goSouTh'
     """
-    no_punct = ""
-    for char in text:
-        if not (char in string.punctuation):
-            no_punct = no_punct + char
+    no_punct=text.translate(string.maketrans("",""), string.punctuation)
 
     return no_punct
 

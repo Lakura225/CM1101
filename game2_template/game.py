@@ -237,6 +237,7 @@ def execute_go(direction):
     (and prints the name of the room into which the player is
     moving). Otherwise, it prints "You cannot go there."
     """
+    global current_room
     if direction in current_room["exits"]:
         current_room = move(current_room["exits"], direction)
         return current_room
@@ -250,14 +251,18 @@ def execute_take(item_id):
     there is no such item in the room, this function prints
     "You cannot take that."
     """
-    for item in current_room["items"]:
-        if item["id"] == item_id:
-            current_room["items"].remove(item)
-            inventory.append(item)
-            break
+    if not (current_room["items"]):
+        print("There is nothing here to take")
+    else:
+        for item in current_room["items"]:
+            if item["id"] == item_id:
+                current_room["items"].remove(item)
+                inventory.append(item)
+                break
 
-    if item_id not in (item["id"]):
-        print("You cannot take that.")
+        if item_id not in (item["id"]):
+            print("You cannot take that.")
+    
 
     
 
@@ -266,14 +271,18 @@ def execute_drop(item_id):
     player's inventory to list of items in the current room. However, if there is
     no such item in the inventory, this function prints "You cannot drop that."
     """
-    for item in inventory:
-        if item["id"] == item_id:
-            inventory.remove(item)
-            current_room["items"].append(item)
-            break
+    if not (inventory):
+        print("You have nothing to drop.")
+    else: 
+        for item in inventory:
+            if item["id"] == item_id:
+                inventory.remove(item)
+                current_room["items"].append(item)
+                break
 
-    if item_id not in iventory:
+    if item_id not in (item["id"]):
         print("You cannot drop that.")
+
     
 
 def execute_command(command):
