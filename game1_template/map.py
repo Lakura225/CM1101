@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 room_reception = {
     "name": "Reception",
 
@@ -11,18 +9,18 @@ seems to be playing an old school text-based adventure
 game on his computer. There are corridors leading to the
 south and east. The exit is to the west.""",
 
-    "exits": {"south": "Robs", "east": "Tutor", "west": "Parking"} # COMPLETE ME! ADD EXITS!
+    "exits": {"south": "Admins", "east": "Tutor", "west": "Parking"} # COMPLETE ME! ADD EXITS!
 }
 
-room_robs = {
-    "name": "Robs' room",
+room_admins = {
+    "name": "MJ and Simon's room",
 
     "description":
     """You are leaning agains the door of the systems managers'
-room. Inside you notice Rob Evans and Rob Davies. They
+room. Inside you notice Matt "MJ" John and Simon Jones. They
 ignore you. To the north is the reception.""",
 
-   "exits": {"north": "Reception"} # ADD EXITS HERE!
+    "exits": {"north": "Reception"} # ADD EXITS HERE!
 }
 
 room_tutor = {
@@ -45,7 +43,7 @@ room_parking = {
 You can go south to the COMSC reception, or east to the
 general office.""",
 
-   "exits": {"south": "Reception", "east": "Office"} # ADD EXITS HERE!
+    "exits": {"south": "Reception", "east": "Office"} # ADD EXITS HERE!
 }
 
 room_office = {
@@ -64,7 +62,7 @@ Queen's Buildings.""",
 
 rooms = {
     "Reception": room_reception,
-    "Robs": room_robs,
+    "Admins": room_admins,
     "Tutor": room_tutor,
     "Parking": room_parking,
     "Office": room_office
