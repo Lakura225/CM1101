@@ -49,7 +49,10 @@ def remove_punct(text):
     >>> remove_punct(",go!So.?uTh")
     'goSouTh'
     """
-    no_punct=text.translate(string.maketrans("",""), string.punctuation)
+    no_punct = ""
+    for char in text:
+        if not (char in string.punctuation):
+            no_punct = no_punct + char
 
     return no_punct
 
@@ -81,9 +84,7 @@ def normalise_input(user_input):
     """
     # Remove punctuation and convert to lower case
     no_punct = remove_punct(user_input).lower()
-    # Remove spaces
     no_spaces = no_punct.split()
-    # Remove words
     key_words_only = filter_words(no_spaces, skip_words)
 
     return key_words_only

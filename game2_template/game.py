@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 from map import rooms
 from player import *
 from items import *
 from gameparser import *
-import string
+
 
 
 def list_of_items(items):
@@ -245,6 +245,7 @@ def execute_go(direction):
         print("You cannot go there.")
 
 
+
 def execute_take(item_id):
     """This function takes an item_id as an argument and moves this item from the
     list of items in the current room to the player's inventory. However, if
@@ -264,8 +265,6 @@ def execute_take(item_id):
             print("You cannot take that.")
     
 
-    
-
 def execute_drop(item_id):
     """This function takes an item_id as an argument and moves this item from the
     player's inventory to list of items in the current room. However, if there is
@@ -282,7 +281,6 @@ def execute_drop(item_id):
 
     if item_id not in (item["id"]):
         print("You cannot drop that.")
-
     
 
 def execute_command(command):
@@ -331,7 +329,7 @@ def menu(exits, room_items, inv_items):
     print_menu(exits, room_items, inv_items)
 
     # Read player's input
-    user_input = raw_input("> ")
+    user_input = input("> ")
 
     # Normalise the input
     normalised_user_input = normalise_input(user_input)
