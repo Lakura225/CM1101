@@ -240,6 +240,7 @@ def execute_go(direction):
     global current_room
     if direction in current_room["exits"]:
         current_room = move(current_room["exits"], direction)
+        print("You're moving into %s" % current_room["name"])
         return current_room
     else:
         print("You cannot go there.")
