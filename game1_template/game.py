@@ -183,7 +183,7 @@ def menu(exits):
     # Repeat until the player enter a valid choice
     while True:
         print_menu(exits)
-        user_input = raw_input("> ")
+        user_input = input("> ")
         choice = normalise_input(user_input)
         if is_valid_exit(exits, choice) == True:
             return choice
